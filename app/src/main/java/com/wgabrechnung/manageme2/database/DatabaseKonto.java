@@ -66,7 +66,7 @@ public class DatabaseKonto extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean addDataset(Float betrag,String vzweck, String art, String name, String date, String credit_debit){
+    public boolean addDataset(Double betrag,String vzweck, String art, String name, String date, String credit_debit){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("BETRAG",betrag);
@@ -78,6 +78,13 @@ public class DatabaseKonto extends SQLiteOpenHelper {
 
         sqLiteDatabase.insert(TABLE_NAME,null,contentValues);
         return true;
+
+    }
+
+    public void deleteContents(){
+
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        sqLiteDatabase.execSQL("delete from " + TABLE_NAME);
 
     }
 

@@ -38,7 +38,11 @@ public class HomeFragment extends Fragment {
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
-        recyclerView.setAdapter(new KontoAdapter(1234));
+
+        DatabaseKonto dbKont = new DatabaseKonto(root.getContext());
+        ArrayList<String[]> umsaetze = dbKont.getAllText();
+
+        recyclerView.setAdapter(new KontoAdapter(1234,umsaetze));
 
 
         return root;

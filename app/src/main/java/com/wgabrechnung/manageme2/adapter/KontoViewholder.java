@@ -10,13 +10,33 @@ import com.wgabrechnung.manageme2.R;
 
 public class KontoViewholder extends RecyclerView.ViewHolder {
 
-    private TextView view;
+    private final TextView viewBetrag;
+    private final TextView viewName;
+    private final TextView viewDatum;
+    private final TextView viewArt;
+
     public KontoViewholder(@NonNull View itemView) {
         super(itemView);
-        view = itemView.findViewById(R.id.text1);
+        viewBetrag = itemView.findViewById(R.id.BETRAG);
+        viewName = itemView.findViewById(R.id.NAME);
+        viewDatum = itemView.findViewById(R.id.DATUM);
+        viewArt = itemView.findViewById(R.id.ART);
     }
 
-    public TextView getView(){
-        return view;
+    public TextView getViewBetrag(){
+        return viewBetrag;
     }
+
+    public TextView getViewName(){
+        return viewName;
+    }
+
+    public TextView getViewArt(){
+        return viewArt;
+    }
+
+    public TextView getViewDatum(){
+        return viewDatum;
+    }
+
 }

@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.wgabrechnung.manageme2.database.DatabaseKonto;
@@ -18,6 +19,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Iterator;
 
 
 public class HTTP_REQUEST extends AsyncTask<String, Void, String>  {
@@ -139,12 +141,30 @@ public class HTTP_REQUEST extends AsyncTask<String, Void, String>  {
     }
 
 
-    public void Kontenrundruf(JSONObject obj){
+    public void Kontenrundruf(JSONObject obj) throws JSONException {
 
         DatabaseKonto dbKonto = new DatabaseKonto(context);
 
+        //-- damit Status nicht genommen wird
+        int length = obj.length();
+        length--;
 
+        for(Integer i = 0; i<length; i++){
 
+            String key = i.toString();
+            if ( obj.get(key) instanceof JSONObject ) {
+                JSONObject uObj = (JSONObject) obj.get(key);
+
+                Double betrag = uObj.getDouble("BETRAG");
+                String vzweck = uObj.getString("VZWECK");
+                String art = uObj.getString("ART");
+                String name = uObj.getString("NAME");
+                String date = uObj.getString("DATE");
+                String credit = uObj.getString("CREDIT_DEBIT");
+
+                dbKonto.addDataset(betrag, vzweck, art, name, date, credit);
+            }
+        }
 
     }
 
