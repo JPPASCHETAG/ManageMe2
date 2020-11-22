@@ -6,7 +6,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
+import android.provider.ContactsContract;
 import android.widget.Toast;
+
+import com.wgabrechnung.manageme2.database.DatabaseKonto;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -68,7 +71,7 @@ public class HTTP_REQUEST extends AsyncTask<String, Void, String>  {
                     break;
                 //Kontenrundruf
                 case 2:
-                    Kontenrundruf();
+                    Kontenrundruf(obj);
                     break;
                 //neues Projekt erstellen
                 case 3:
@@ -136,7 +139,12 @@ public class HTTP_REQUEST extends AsyncTask<String, Void, String>  {
     }
 
 
-    public void Kontenrundruf(){
+    public void Kontenrundruf(JSONObject obj){
+
+        DatabaseKonto dbKonto = new DatabaseKonto(context);
+
+
+
 
     }
 
