@@ -42,7 +42,7 @@ public class HomeFragment extends Fragment {
         DatabaseKonto dbKont = new DatabaseKonto(root.getContext());
         ArrayList<String[]> umsaetze = dbKont.getAllText();
 
-        recyclerView.setAdapter(new KontoAdapter(1234,umsaetze));
+        recyclerView.setAdapter(new KontoAdapter(umsaetze));
 
 
         return root;

@@ -10,18 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.wgabrechnung.manageme2.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Random;
 
 public class KontoAdapter extends RecyclerView.Adapter<KontoViewholder> {
 
-    private ArrayList<String[]> arrayList;
-    private Random random;
+    private final ArrayList<String[]> arrayList;
 
-    public KontoAdapter(int seed,ArrayList<String[]> liste) {
+    public KontoAdapter(ArrayList<String[]> liste) {
         this.arrayList = liste;
-        this.random = new Random(seed);
     }
 
     @Override
@@ -56,7 +51,7 @@ public class KontoAdapter extends RecyclerView.Adapter<KontoViewholder> {
 
     @Override
     public int getItemCount() {
-        return 100;
+        return arrayList.size();
     }
 
     public String FormatBetrag(String oldBetrag, String credit_debit){
