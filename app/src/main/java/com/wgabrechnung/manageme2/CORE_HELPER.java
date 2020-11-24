@@ -47,4 +47,41 @@ public class CORE_HELPER {
 
     }
 
+    public static String FormatBetrag(String oldBetrag, String credit_debit){
+
+        String[] nachKomma = oldBetrag.split("\\.");
+        String cent = nachKomma[1];
+        if(cent.length() == 1){
+            cent += "0 €";
+        }else{
+            cent += " €";
+        }
+
+        nachKomma[1] = cent;
+
+        String strReturn = String.join(",", nachKomma);
+
+        if(credit_debit.equals("debit")){
+            strReturn = "-" + strReturn;
+        }
+
+        return strReturn;
+    }
+
+    public static String FormatDatum(String datum){
+
+        String strReturn = "";
+
+        String[] date = datum.split("-");
+
+        for (int i = date.length-1; i>=0;i--){
+            strReturn += date[i] +".";
+        }
+
+        strReturn = strReturn.substring(0,strReturn.length()-1);
+
+        return strReturn;
+
+    }
+
 }
