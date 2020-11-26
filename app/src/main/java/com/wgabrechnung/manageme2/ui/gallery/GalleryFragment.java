@@ -76,11 +76,11 @@ public class GalleryFragment extends Fragment {
         recyclerView.setAdapter(new ProjekteAdapter(projekte));
 
         //Die kleinen fabs werden ausgeblendet
-        FloatingActionButton l1 = root.findViewById(R.id.fabMic);
-        FloatingActionButton l2 = root.findViewById(R.id.fabCall);
+        FloatingActionButton addProjekt = root.findViewById(R.id.addProjekt);
+        FloatingActionButton newProjekt = root.findViewById(R.id.newProjekt);
 
-        ViewAnimation.init(l1);
-        ViewAnimation.init(l2);
+        ViewAnimation.init(addProjekt);
+        ViewAnimation.init(newProjekt);
 
         //Hier wir der ActionButton aufgebaut
         final FloatingActionButton actionButton = root.findViewById(R.id.floatingActionButton);
@@ -90,16 +90,16 @@ public class GalleryFragment extends Fragment {
 
                 isRotate = ViewAnimation.rotateFab(v,!isRotate,actionButton);
                 if(isRotate){
-                    ViewAnimation.showIn(l1);
-                    ViewAnimation.showIn(l2);
+                    ViewAnimation.showIn(addProjekt);
+                    ViewAnimation.showIn(newProjekt);
                 }else{
-                    ViewAnimation.showOut(l1);
-                    ViewAnimation.showOut(l2);
+                    ViewAnimation.showOut(addProjekt);
+                    ViewAnimation.showOut(newProjekt);
                 }
             }
         });
 
-        l1.setOnClickListener(new View.OnClickListener() {
+        addProjekt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Hier können die anderen Fragmente geöffnet werden
@@ -114,7 +114,7 @@ public class GalleryFragment extends Fragment {
             }
         });
 
-        l2.setOnClickListener(new View.OnClickListener() {
+        newProjekt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Hier können die anderen Fragmente geöffnet werden
