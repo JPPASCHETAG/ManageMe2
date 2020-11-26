@@ -1,37 +1,24 @@
 package com.wgabrechnung.manageme2.ui.gallery;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.wgabrechnung.manageme2.CORE_HELPER;
-import com.wgabrechnung.manageme2.HTTP_REQUEST;
 import com.wgabrechnung.manageme2.R;
 import com.wgabrechnung.manageme2.ViewAnimation;
-import com.wgabrechnung.manageme2.adapter.KontoAdapter;
 import com.wgabrechnung.manageme2.adapter.ProjekteAdapter;
-import com.wgabrechnung.manageme2.database.DatabaseKonto;
+import com.wgabrechnung.manageme2.ui.slideshow.SlideshowFragment;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class GalleryFragment extends Fragment {
 
@@ -116,6 +103,14 @@ public class GalleryFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //Hier können die anderen Fragmente geöffnet werden
+
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.setCustomAnimations(R.anim.right_enter, R.anim.right_exit);
+                SlideshowFragment newFragment = SlideshowFragment.newInstance();
+                ft.replace(R.id.nav_host_fragment, newFragment, "detailFragment");
+                // Start the animated transi    tion.
+                ft.commit();
+
             }
         });
 

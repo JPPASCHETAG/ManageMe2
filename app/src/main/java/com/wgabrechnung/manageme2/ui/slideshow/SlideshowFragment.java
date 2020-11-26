@@ -18,6 +18,14 @@ public class SlideshowFragment extends Fragment {
 
     private SlideshowViewModel slideshowViewModel;
 
+    public static SlideshowFragment newInstance(){
+
+        SlideshowFragment slideshowFragment = new SlideshowFragment();
+
+        return slideshowFragment;
+    }
+
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         slideshowViewModel =
