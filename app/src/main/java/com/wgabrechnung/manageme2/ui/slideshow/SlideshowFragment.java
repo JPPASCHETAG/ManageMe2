@@ -19,10 +19,7 @@ public class SlideshowFragment extends Fragment {
     private SlideshowViewModel slideshowViewModel;
 
     public static SlideshowFragment newInstance(){
-
-        SlideshowFragment slideshowFragment = new SlideshowFragment();
-
-        return slideshowFragment;
+        return new SlideshowFragment();
     }
 
 

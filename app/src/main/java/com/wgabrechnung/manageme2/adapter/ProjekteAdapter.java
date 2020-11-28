@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.wgabrechnung.manageme2.R;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 public class ProjekteAdapter extends RecyclerView.Adapter<ProjeketeViewHolder>  {
@@ -44,7 +45,18 @@ public class ProjekteAdapter extends RecyclerView.Adapter<ProjeketeViewHolder>  
 
         holder.getViewBetrag().setText(betrag);
         holder.getViewName().setText(name);
-        holder.getViewImg().setBackground(Drawable.createFromPath(img));
+        holder.getViewImg().setImageResource(getResId(img,R.drawable.class));
+    }
+
+    public static int getResId(String resName, Class<?> c) {
+
+        try {
+            Field idField = c.getDeclaredField(resName);
+            return idField.getInt(idField);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
     }
 
     @Override

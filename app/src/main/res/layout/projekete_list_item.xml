@@ -24,8 +24,7 @@
             <ImageView
                 android:id="@+id/IMAGE"
                 android:layout_width="match_parent"
-                android:layout_height="275dp"
-                android:src="@drawable/fjord_4614096_1920" />
+                android:layout_height="275dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
