@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 
+import com.wgabrechnung.manageme2.database.DatabaseProjekte;
+
 public class MainActivity extends AppCompatActivity {
 
     String USER_ID;

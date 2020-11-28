@@ -11,6 +11,9 @@ import com.wgabrechnung.manageme2.R;
 
 import java.util.ArrayList;
 
+import static com.wgabrechnung.manageme2.CORE_HELPER.FormatBetrag;
+import static com.wgabrechnung.manageme2.CORE_HELPER.FormatDatum;
+
 public class KontoAdapter extends RecyclerView.Adapter<KontoViewholder> {
 
     private final ArrayList<String[]> arrayList;
@@ -42,7 +45,6 @@ public class KontoAdapter extends RecyclerView.Adapter<KontoViewholder> {
         String datum = arrayList.get(position)[6];
         datum = FormatDatum(datum);
 
-
         holder.getViewBetrag().setText(betrag);
         holder.getViewName().setText(name);
         holder.getViewArt().setText(art);
@@ -52,43 +54,6 @@ public class KontoAdapter extends RecyclerView.Adapter<KontoViewholder> {
     @Override
     public int getItemCount() {
         return arrayList.size();
-    }
-
-    public String FormatBetrag(String oldBetrag, String credit_debit){
-
-        String[] nachKomma = oldBetrag.split("\\.");
-        String cent = nachKomma[1];
-        if(cent.length() == 1){
-            cent += "0 €";
-        }else{
-            cent += " €";
-        }
-
-        nachKomma[1] = cent;
-
-        String strReturn = String.join(",", nachKomma);
-
-        if(credit_debit.equals("debit")){
-            strReturn = "-" + strReturn;
-        }
-
-        return strReturn;
-    }
-
-    public String FormatDatum(String datum){
-
-        String strReturn = "";
-
-        String[] date = datum.split("-");
-
-        for (int i = date.length-1; i>=0;i--){
-            strReturn += date[i] +".";
-        }
-
-        strReturn = strReturn.substring(0,strReturn.length()-1);
-
-        return strReturn;
-
     }
 
 }

@@ -7,15 +7,14 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.wgabrechnung.manageme2.ui.home.HomeFragment"
+        android:name="com.wgabrechnung.manageme2.ui.konto.HomeFragment"
         android:label="Alle Umsätze"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.wgabrechnung.manageme2.ui.gallery.GalleryFragment"
+        android:name="com.wgabrechnung.manageme2.ui.projekte.GalleryFragment"
         android:label="Projekte"
         tools:layout="@layout/fragment_gallery" />
-
 
     <fragment
         android:id="@+id/nav_slideshow"
