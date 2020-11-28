@@ -80,7 +80,7 @@ public class GalleryFragment extends Fragment {
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.setCustomAnimations(R.anim.right_enter, R.anim.right_exit);
                 SlideshowFragment newFragment = SlideshowFragment.newInstance();
-                ft.replace(R.id.nav_host_fragment, newFragment, "detailFragment");
+                ft.replace(R.id.nav_host_fragment, newFragment, "detailFragment").addToBackStack( "ProjektFragment" );
                 // Start the animated transition.
                 ft.commit();
 
@@ -94,7 +94,7 @@ public class GalleryFragment extends Fragment {
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.setCustomAnimations(R.anim.right_enter, R.anim.right_exit);
                 NewProjektFragment newFragment = NewProjektFragment.newInstance();
-                ft.replace(R.id.nav_host_fragment, newFragment, "newProjektFragment");
+                ft.replace(R.id.nav_host_fragment, newFragment, "newProjektFragment").addToBackStack( "ProjektFragment" );
                 // Start the animated transition.
                 ft.commit();
             }
