@@ -1,5 +1,6 @@
 package com.wgabrechnung.manageme2.ui.newProjekt;
 
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -23,9 +24,12 @@ import android.widget.EditText;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.wgabrechnung.manageme2.R;
 import com.wgabrechnung.manageme2.database.DatabaseProjekte;
+import com.wgabrechnung.manageme2.ui.projekte.GalleryFragment;
+import com.wgabrechnung.manageme2.ui.slideshow.SlideshowFragment;
 
 public class NewProjektFragment extends Fragment {
 
@@ -128,6 +132,15 @@ public class NewProjektFragment extends Fragment {
                 String img = getImageId(imgID);
 
                 db.addDataset(betrag,bez,img);
+
+                Toast.makeText(root.getContext(),"Projekt erfolgreich angelegt!", Toast.LENGTH_LONG).show();
+
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.setCustomAnimations(R.anim.right_enter, R.anim.right_exit);
+                GalleryFragment newFragment = GalleryFragment.newInstance();
+                ft.replace(R.id.nav_host_fragment, newFragment, "ProjekteFragment");
+                // Start the animated transition.
+                ft.commit();
 
             }
         });

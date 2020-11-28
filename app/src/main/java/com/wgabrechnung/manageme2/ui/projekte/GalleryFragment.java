@@ -27,6 +27,10 @@ public class GalleryFragment extends Fragment {
     private GalleryViewModel galleryViewModel;
     boolean isRotate = false;
 
+    public static GalleryFragment newInstance() {
+        return new GalleryFragment();
+    }
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         galleryViewModel =
