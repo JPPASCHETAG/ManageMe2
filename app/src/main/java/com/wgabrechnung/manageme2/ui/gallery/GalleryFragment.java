@@ -1,6 +1,7 @@
 package com.wgabrechnung.manageme2.ui.gallery;
 
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wgabrechnung.manageme2.R;
 import com.wgabrechnung.manageme2.ViewAnimation;
 import com.wgabrechnung.manageme2.adapter.ProjekteAdapter;
+import com.wgabrechnung.manageme2.database.DatabaseProjekte;
 import com.wgabrechnung.manageme2.ui.slideshow.SlideshowFragment;
 
 import java.util.ArrayList;
@@ -58,20 +60,8 @@ public class GalleryFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
 
-        ArrayList<String[]> projekte = new ArrayList<>();
-        String[] kl = new String[2];
-        kl[0] = "Einkaufen";
-        kl[1] = "285.66 €";
-        String[] kl1 = new String[2];
-        kl1[0] = "Auto";
-        kl1[1] = "851.63 €";
-        String[] kl2 = new String[2];
-        kl2[0] = "Reisen 2020";
-        kl2[1] = "2354,14 €";
-
-        projekte.add(kl);
-        projekte.add(kl1);
-        projekte.add(kl2);
+        DatabaseProjekte db = new DatabaseProjekte(getContext());
+        ArrayList<String[]> projekte = db.getAllData();
 
         recyclerView.setAdapter(new ProjekteAdapter(projekte));
 
@@ -108,7 +98,7 @@ public class GalleryFragment extends Fragment {
                 ft.setCustomAnimations(R.anim.right_enter, R.anim.right_exit);
                 SlideshowFragment newFragment = SlideshowFragment.newInstance();
                 ft.replace(R.id.nav_host_fragment, newFragment, "detailFragment");
-                // Start the animated transi    tion.
+                // Start the animated transition.
                 ft.commit();
 
             }

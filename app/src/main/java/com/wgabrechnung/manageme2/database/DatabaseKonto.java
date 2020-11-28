@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class DatabaseKonto extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "MANAGE_ME";
+    public static final String DATABASE_NAME = "KONTO";
     public static final String TABLE_NAME = "KONTO";
 
 

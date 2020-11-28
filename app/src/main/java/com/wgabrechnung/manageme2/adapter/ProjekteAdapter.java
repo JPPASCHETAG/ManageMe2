@@ -40,12 +40,11 @@ public class ProjekteAdapter extends RecyclerView.Adapter<ProjeketeViewHolder>  
 
         String name = arrayList.get(position)[0];
         String betrag = arrayList.get(position)[1];
-
-        //String img = arrayList.get(position)[2];
+        String img = arrayList.get(position)[2];
 
         holder.getViewBetrag().setText(betrag);
         holder.getViewName().setText(name);
-        holder.getViewImg().setBackground(Drawable.createFromPath("@drawable/fjord_4614096_1920"));
+        holder.getViewImg().setBackground(Drawable.createFromPath(img));
     }
 
     @Override
