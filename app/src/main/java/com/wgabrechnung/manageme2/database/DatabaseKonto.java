@@ -120,4 +120,25 @@ public class DatabaseKonto extends SQLiteOpenHelper {
 
     }
 
+    public String getLastRundruf(){
+
+        String strReturn = "";
+
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT DATE FROM " + TABLE_NAME +  " ORDER BY DATE DESC LIMIT 1",null);
+
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()){
+
+            strReturn = cursor.getString(cursor.getColumnIndex("DATE"));
+
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        return strReturn;
+    }
+
+
 }

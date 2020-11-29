@@ -89,8 +89,12 @@ public class HomeFragment extends Fragment {
 
                             Toast.makeText(root.getContext(),"Kontenrundruf gestartet",Toast.LENGTH_SHORT).show();
 
+                            DatabaseKonto db = new DatabaseKonto(root.getContext());
+                            String lastRundruf = db.getLastRundruf();
+
                             HashMap<String,String> URLparam = new HashMap<String,String>();
                             URLparam.put("MODE","2");
+                            URLparam.put("LAST_RUNDRUF",lastRundruf);
                             String strURL = CORE_HELPER.CREATE_URL(URLparam);
 
                             HTTP_REQUEST http_request = new HTTP_REQUEST(root.getContext(),2);
