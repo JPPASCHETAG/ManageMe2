@@ -13,8 +13,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_weight="1"
         android:background="@drawable/rounded_corners"
         android:gravity="center_vertical"
@@ -23,7 +23,16 @@
         android:paddingLeft="5dp"
         android:paddingRight="5dp">
 
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_marginStart="-45dp"
+            android:visibility="invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
         <LinearLayout
+            android:id="@+id/layoutBez"
+            android:layout_marginStart="0dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"

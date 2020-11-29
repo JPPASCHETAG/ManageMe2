@@ -114,7 +114,7 @@ public class HomeFragment extends Fragment {
         autoSort.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //
+                Toast.makeText(root.getContext(),"Die Sortierfunktion steht noch nicht zu Verfügung",Toast.LENGTH_SHORT).show();
             }
         });
 
