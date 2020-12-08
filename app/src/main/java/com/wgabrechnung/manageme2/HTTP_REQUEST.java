@@ -166,6 +166,8 @@ public class HTTP_REQUEST extends AsyncTask<String, Void, String>  {
             }
         }
 
+        Toast.makeText(context,"Kontenrundruf beendet",Toast.LENGTH_SHORT).show();
+
     }
 
 }

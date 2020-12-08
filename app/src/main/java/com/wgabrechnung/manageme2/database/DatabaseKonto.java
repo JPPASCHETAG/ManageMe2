@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.wgabrechnung.manageme2.ui.konto.kontoumsatz;
+
 import java.util.ArrayList;
 
 public class DatabaseKonto extends SQLiteOpenHelper {
@@ -119,6 +121,37 @@ public class DatabaseKonto extends SQLiteOpenHelper {
         return arrayList;
 
     }
+
+    public ArrayList<kontoumsatz> getKontoListAdaptder(){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+        ArrayList<kontoumsatz> arrayList = new ArrayList<>();
+
+
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME,null);
+
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()){
+
+            kontoumsatz dataset = new kontoumsatz();
+
+            dataset.setBETRAG(String.valueOf(cursor.getFloat(cursor.getColumnIndex("BETRAG"))));
+            dataset.setNAME(cursor.getString(cursor.getColumnIndex("NAME")));
+            dataset.setDATUM(cursor.getString(cursor.getColumnIndex("DATE")));
+            dataset.setART(cursor.getString(cursor.getColumnIndex("ART")));
+            dataset.setCREDIT_DEBIT(cursor.getString(cursor.getColumnIndex("CREDIT_DEBIT")));
+            dataset.setSelected(false);
+
+            arrayList.add(dataset);
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        return arrayList;
+
+    }
+
+
 
     public String getLastRundruf(){
 

@@ -46,7 +46,7 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
 
         DatabaseKonto dbKont = new DatabaseKonto(root.getContext());
-        ArrayList<String[]> umsaetze = dbKont.getAllText();
+        ArrayList<kontoumsatz> umsaetze = dbKont.getKontoListAdaptder();
 
         KontoAdapter kontoAdapter = new KontoAdapter(umsaetze);
         recyclerView.setAdapter(kontoAdapter);
@@ -100,6 +100,7 @@ public class HomeFragment extends Fragment {
                             HTTP_REQUEST http_request = new HTTP_REQUEST(root.getContext(),2);
                             http_request.execute(strURL);
 
+                            kontoAdapter.notifyDataSetChanged();
                         }
                     });
                 builder.setNegativeButton("abbrechen", new DialogInterface.OnClickListener() {
