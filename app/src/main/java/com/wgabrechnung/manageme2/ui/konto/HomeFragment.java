@@ -116,27 +116,35 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                int intCountSelected = 0;
-                for (kontoumsatz umsatz : kontoAdapter.getList()) {
-                    if (umsatz.isSelected()) {
-                        intCountSelected++;
-                    }
-                }
 
-                if(intCountSelected > 0){
-                    kontoAdapter.manualSort(root.getContext(),kontoAdapter.getList());
+                DialogSortUmsatz dialog = new DialogSortUmsatz(root.getContext());
+                dialog.show();
 
-                    //adapter neu aufbauen damit changes geladen werden
-                    DatabaseKonto dbKont = new DatabaseKonto(root.getContext());
-                    ArrayList<kontoumsatz> umsaetze = dbKont.getKontoListAdaptder();
 
-                    kontoAdapter.setList(umsaetze);
-                    recyclerView.setAdapter(kontoAdapter);
 
-                    Toast.makeText(root.getContext(),"Es sind " + intCountSelected + " Umsätze zum sortieren ausgewählt",Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(root.getContext(),"Bitte erst Umsätze auswählen welche sortiert werden sollen!",Toast.LENGTH_SHORT).show();
-                }
+
+
+//                int intCountSelected = 0;
+//                for (kontoumsatz umsatz : kontoAdapter.getList()) {
+//                    if (umsatz.isSelected()) {
+//                        intCountSelected++;
+//                    }
+//                }
+//
+//                if(intCountSelected > 0){
+//                    kontoAdapter.manualSort(root.getContext(),kontoAdapter.getList());
+//
+//                    //adapter neu aufbauen damit changes geladen werden
+//                    DatabaseKonto dbKont = new DatabaseKonto(root.getContext());
+//                    ArrayList<kontoumsatz> umsaetze = dbKont.getKontoListAdaptder();
+//
+//                    kontoAdapter.setList(umsaetze);
+//                    recyclerView.setAdapter(kontoAdapter);
+//
+//                    Toast.makeText(root.getContext(),"Es sind " + intCountSelected + " Umsätze zum sortieren ausgewählt",Toast.LENGTH_SHORT).show();
+//                }else{
+//                    Toast.makeText(root.getContext(),"Bitte erst Umsätze auswählen welche sortiert werden sollen!",Toast.LENGTH_SHORT).show();
+//                }
 
             }
         });
