@@ -67,11 +67,12 @@ public class DatabaseProjekte extends SQLiteOpenHelper {
         cursor.moveToFirst();
         while(!cursor.isAfterLast()){
 
-            String[] dataset = new String[3];
+            String[] dataset = new String[4];
 
             dataset[0] = cursor.getString(cursor.getColumnIndex("BEZ"));
             dataset[1] = cursor.getString(cursor.getColumnIndex("BETRAG"));
             dataset[2] = cursor.getString(cursor.getColumnIndex("IMG"));
+            dataset[3] = cursor.getString(cursor.getColumnIndex("ID"));
 
             arrayList.add(dataset);
             cursor.moveToNext();

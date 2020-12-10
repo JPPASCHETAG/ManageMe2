@@ -13,18 +13,24 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.view.MotionEventCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.wgabrechnung.manageme2.R;
+import com.wgabrechnung.manageme2.adapter.KontoAdapter;
+import com.wgabrechnung.manageme2.database.DatabaseKonto;
 import com.wgabrechnung.manageme2.database.DatabaseProjekte;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DialogSortUmsatz extends Dialog implements android.view.View.OnClickListener {
 
     public Button yes;
     private final List<String[]> projektList;
+    private final KontoAdapter kontoAdapter;
+    private final RecyclerView recyclerView;
 
-    private TextView textView;
+    private TextView textView,textViewID;
     private ImageView imageView;
     private int currProjekt = 0;
 
@@ -38,10 +44,12 @@ public class DialogSortUmsatz extends Dialog implements android.view.View.OnClic
      * @param context the context in which the dialog should run
      *
      */
-    public DialogSortUmsatz(@NonNull Context context) {
+    public DialogSortUmsatz(@NonNull Context context,KontoAdapter Adapter,RecyclerView recycler) {
         super(context);
         DatabaseProjekte db = new DatabaseProjekte(getContext());
         projektList = db.getAllData();
+        kontoAdapter  = Adapter;
+        recyclerView = recycler;
     }
 
     @Override
@@ -52,8 +60,17 @@ public class DialogSortUmsatz extends Dialog implements android.view.View.OnClic
         yes = (Button) findViewById(R.id.btn_yes);
         yes.setOnClickListener(this);
 
+        textViewID = findViewById(R.id.text_dialog_id);
+
         textView = findViewById(R.id.text_dialog);
         imageView = findViewById(R.id.dialog_projekt_image);
+
+
+        String[] projekt = projektList.get(0);
+
+        textView.setText(projekt[0]);
+        textViewID.setText(projekt[3]);
+        imageView.setImageResource(getImageID(projekt[2]));
 
     }
 
@@ -86,6 +103,7 @@ public class DialogSortUmsatz extends Dialog implements android.view.View.OnClic
 
                         textView.setText(projekt[0]);
                         imageView.setImageResource(getImageID(projekt[2]));
+                        textViewID.setText(projekt[3]);
 
                     }else{
                         currProjekt--;
@@ -98,6 +116,7 @@ public class DialogSortUmsatz extends Dialog implements android.view.View.OnClic
 
                         textView.setText(projekt[0]);
                         imageView.setImageResource(getImageID(projekt[2]));
+                        textViewID.setText(projekt[3]);
                     }
                 }
                 break;
@@ -116,7 +135,28 @@ public class DialogSortUmsatz extends Dialog implements android.view.View.OnClic
         System.out.println(v.getId());
 
         if (v.getId() == R.id.btn_yes) {
-            System.out.println("save");
+            int intCountSelected = 0;
+            for (kontoumsatz umsatz : kontoAdapter.getList()) {
+                if (umsatz.isSelected()) {
+                    intCountSelected++;
+                }
+            }
+
+            if(intCountSelected > 0){
+                kontoAdapter.manualSort(getContext(),kontoAdapter.getList());
+
+                //adapter neu aufbauen damit changes geladen werden
+                DatabaseKonto dbKont = new DatabaseKonto(getContext());
+                ArrayList<kontoumsatz> umsaetze = dbKont.getKontoListAdaptder();
+
+                kontoAdapter.setList(umsaetze);
+                recyclerView.setAdapter(kontoAdapter);
+
+                Toast.makeText(getContext(),"Es sind " + intCountSelected + " Umsätze zum sortieren ausgewählt",Toast.LENGTH_SHORT).show();
+                this.dismiss();
+            }else{
+                Toast.makeText(getContext(),"Bitte erst Umsätze auswählen welche sortiert werden sollen!",Toast.LENGTH_SHORT).show();
+            }
         }
 
     }

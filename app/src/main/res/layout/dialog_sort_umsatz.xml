@@ -38,6 +38,12 @@
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:id="@+id/text_dialog_id" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="40dp"
