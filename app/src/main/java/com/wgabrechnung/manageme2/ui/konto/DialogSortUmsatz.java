@@ -143,7 +143,7 @@ public class DialogSortUmsatz extends Dialog implements android.view.View.OnClic
             }
 
             if(intCountSelected > 0){
-                kontoAdapter.manualSort(getContext(),kontoAdapter.getList());
+                kontoAdapter.manualSort(getContext(),kontoAdapter.getList(), Integer.parseInt(textViewID.getText().toString()));
 
                 //adapter neu aufbauen damit changes geladen werden
                 DatabaseKonto dbKont = new DatabaseKonto(getContext());
@@ -155,6 +155,7 @@ public class DialogSortUmsatz extends Dialog implements android.view.View.OnClic
                 Toast.makeText(getContext(),"Es sind " + intCountSelected + " Umsätze zum sortieren ausgewählt",Toast.LENGTH_SHORT).show();
                 this.dismiss();
             }else{
+                this.dismiss();
                 Toast.makeText(getContext(),"Bitte erst Umsätze auswählen welche sortiert werden sollen!",Toast.LENGTH_SHORT).show();
             }
         }

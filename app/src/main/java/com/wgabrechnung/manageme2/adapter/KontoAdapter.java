@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.wgabrechnung.manageme2.R;
 import com.wgabrechnung.manageme2.database.DatabaseKonto;
+import com.wgabrechnung.manageme2.database.DatabaseProjekte;
 import com.wgabrechnung.manageme2.ui.konto.kontoumsatz;
 
 import java.util.ArrayList;
@@ -85,21 +86,20 @@ public class KontoAdapter extends RecyclerView.Adapter<KontoViewholder> {
         return arrayList.size();
     }
 
-    public void manualSort(Context context, ArrayList<kontoumsatz> list){
+    public void manualSort(Context context, ArrayList<kontoumsatz> list, int projektID){
 
         DatabaseKonto db = new DatabaseKonto(context);
         SQLiteDatabase kontoDB = db.getDatabase();
 
         for (kontoumsatz umsatz : list) {
             if (umsatz.isSelected()) {
+                //den umsatz updaten
                 ContentValues cv = new ContentValues();
                 cv.put("IS_SORTED",1);
+                cv.put("PROJEKT_ID",projektID);
                 kontoDB.update("KONTO",cv,"ID=?",new String[]{String.valueOf(umsatz.getID())});
             }
         }
-
-
-
     }
 
 }
