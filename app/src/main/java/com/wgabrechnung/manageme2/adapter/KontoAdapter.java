@@ -1,5 +1,8 @@
 package com.wgabrechnung.manageme2.adapter;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wgabrechnung.manageme2.R;
+import com.wgabrechnung.manageme2.database.DatabaseKonto;
 import com.wgabrechnung.manageme2.ui.konto.kontoumsatz;
 
 import java.util.ArrayList;
@@ -17,15 +21,23 @@ import static com.wgabrechnung.manageme2.CORE_HELPER.FormatDatum;
 
 public class KontoAdapter extends RecyclerView.Adapter<KontoViewholder> {
 
-    private final ArrayList<kontoumsatz> arrayList;
+    private static ArrayList<kontoumsatz> arrayList;
 
     public KontoAdapter(ArrayList<kontoumsatz> liste) {
-        this.arrayList = liste;
+        arrayList = liste;
     }
 
     @Override
     public int getItemViewType(final int position) {
         return R.layout.simple_list_item;
+    }
+
+    public ArrayList<kontoumsatz> getList(){
+        return arrayList;
+    }
+
+    public void setList(ArrayList<kontoumsatz> list){
+        arrayList = list;
     }
 
     @NonNull
@@ -71,6 +83,23 @@ public class KontoAdapter extends RecyclerView.Adapter<KontoViewholder> {
     @Override
     public int getItemCount() {
         return arrayList.size();
+    }
+
+    public void manualSort(Context context, ArrayList<kontoumsatz> list){
+
+        DatabaseKonto db = new DatabaseKonto(context);
+        SQLiteDatabase kontoDB = db.getDatabase();
+
+        for (kontoumsatz umsatz : list) {
+            if (umsatz.isSelected()) {
+                ContentValues cv = new ContentValues();
+                cv.put("IS_SORTED",1);
+                kontoDB.update("KONTO",cv,"ID=?",new String[]{String.valueOf(umsatz.getID())});
+            }
+        }
+
+
+
     }
 
 }

@@ -2,6 +2,7 @@ package com.wgabrechnung.manageme2.ui.konto;
 
 public class kontoumsatz {
 
+    private int ID;
     private String BETRAG;
     private String NAME;
     private String DATUM;
@@ -55,5 +56,13 @@ public class kontoumsatz {
 
     public void setCREDIT_DEBIT(String CREDIT_DEBIT) {
         this.CREDIT_DEBIT = CREDIT_DEBIT;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 }

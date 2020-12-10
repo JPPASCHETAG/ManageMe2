@@ -128,13 +128,14 @@ public class DatabaseKonto extends SQLiteOpenHelper {
         ArrayList<kontoumsatz> arrayList = new ArrayList<>();
 
 
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME,null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE IS_SORTED=0",null);
 
         cursor.moveToFirst();
         while(!cursor.isAfterLast()){
 
             kontoumsatz dataset = new kontoumsatz();
 
+            dataset.setID(cursor.getInt(cursor.getColumnIndex("ID")));
             dataset.setBETRAG(String.valueOf(cursor.getFloat(cursor.getColumnIndex("BETRAG"))));
             dataset.setNAME(cursor.getString(cursor.getColumnIndex("NAME")));
             dataset.setDATUM(cursor.getString(cursor.getColumnIndex("DATE")));
@@ -171,6 +172,10 @@ public class DatabaseKonto extends SQLiteOpenHelper {
         cursor.close();
 
         return strReturn;
+    }
+
+    public SQLiteDatabase getDatabase(){
+        return this.getWritableDatabase();
     }
 
 

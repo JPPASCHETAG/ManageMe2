@@ -6,12 +6,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,8 +21,6 @@ import com.wgabrechnung.manageme2.R;
 import com.wgabrechnung.manageme2.ViewAnimation;
 import com.wgabrechnung.manageme2.adapter.KontoAdapter;
 import com.wgabrechnung.manageme2.database.DatabaseKonto;
-import com.wgabrechnung.manageme2.ui.newProjekt.NewProjektFragment;
-import com.wgabrechnung.manageme2.ui.slideshow.SlideshowFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -119,12 +115,31 @@ public class HomeFragment extends Fragment {
         autoSort.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(root.getContext(),"Die Sortierfunktion steht noch nicht zu Verfügung",Toast.LENGTH_SHORT).show();
+
+                int intCountSelected = 0;
+                for (kontoumsatz umsatz : kontoAdapter.getList()) {
+                    if (umsatz.isSelected()) {
+                        intCountSelected++;
+                    }
+                }
+
+                if(intCountSelected > 0){
+                    kontoAdapter.manualSort(root.getContext(),kontoAdapter.getList());
+
+                    //adapter neu aufbauen damit changes geladen werden
+                    DatabaseKonto dbKont = new DatabaseKonto(root.getContext());
+                    ArrayList<kontoumsatz> umsaetze = dbKont.getKontoListAdaptder();
+
+                    kontoAdapter.setList(umsaetze);
+                    recyclerView.setAdapter(kontoAdapter);
+
+                    Toast.makeText(root.getContext(),"Es sind " + intCountSelected + " Umsätze zum sortieren ausgewählt",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(root.getContext(),"Bitte erst Umsätze auswählen welche sortiert werden sollen!",Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
-
-
-
 
         return root;
     }
