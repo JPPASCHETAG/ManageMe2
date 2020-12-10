@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.wgabrechnung.manageme2.CORE_HELPER;
 import com.wgabrechnung.manageme2.ui.konto.kontoumsatz;
 
 import java.util.ArrayList;
@@ -152,8 +153,6 @@ public class DatabaseKonto extends SQLiteOpenHelper {
 
     }
 
-
-
     public String getLastRundruf(){
 
         String strReturn = "";
@@ -176,6 +175,88 @@ public class DatabaseKonto extends SQLiteOpenHelper {
 
     public SQLiteDatabase getDatabase(){
         return this.getWritableDatabase();
+    }
+
+
+    public ArrayList<kontoumsatz> getDataOfProjekt(int intProjektID){
+
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+        ArrayList<kontoumsatz> arrayList = new ArrayList<>();
+
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE IS_SORTED=1 AND PROJEKT_ID="+intProjektID,null);
+
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()){
+
+            kontoumsatz dataset = new kontoumsatz();
+
+            dataset.setID(cursor.getInt(cursor.getColumnIndex("ID")));
+            dataset.setBETRAG(String.valueOf(cursor.getFloat(cursor.getColumnIndex("BETRAG"))));
+            dataset.setNAME(cursor.getString(cursor.getColumnIndex("NAME")));
+            dataset.setDATUM(cursor.getString(cursor.getColumnIndex("DATE")));
+            dataset.setART(cursor.getString(cursor.getColumnIndex("ART")));
+            dataset.setCREDIT_DEBIT(cursor.getString(cursor.getColumnIndex("CREDIT_DEBIT")));
+            dataset.setSelected(false);
+
+            arrayList.add(dataset);
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        return arrayList;
+
+    }
+
+
+    public String getBetragMonth(int projektID){
+
+        String strReturn = "";
+
+        String strFirstOfMonth = CORE_HELPER.getFirstOfMonth();
+        String strLastOfMonth = CORE_HELPER.getLastOfMonth();
+
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE IS_SORTED=1 AND PROJEKT_ID="+projektID+" AND DATE>="+ strFirstOfMonth +" AND DATE<="+strLastOfMonth,null);
+
+        Double ergebnis = 0.00;
+
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()){
+
+            ergebnis = ergebnis + cursor.getDouble(cursor.getColumnIndex("BETRAG"));
+
+            cursor.moveToNext();
+        }
+        cursor.close();
+        strReturn = ergebnis.toString();
+
+        return strReturn;
+    }
+
+    public String getBetragGesamt(int projektID){
+        String strReturn = "";
+
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+        String strSQL = "SELECT * FROM " + TABLE_NAME + " WHERE IS_SORTED=1 AND PROJEKT_ID="+projektID;
+        Cursor cursor = sqLiteDatabase.rawQuery(strSQL,null);
+
+        Double ergebnis = 0.00;
+
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()){
+
+            ergebnis = ergebnis + cursor.getDouble(cursor.getColumnIndex("BETRAG"));
+
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        strReturn = ergebnis.toString();
+
+        return strReturn;
     }
 
 

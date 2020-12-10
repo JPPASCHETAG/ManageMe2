@@ -56,7 +56,7 @@ public class DatabaseProjekte extends SQLiteOpenHelper {
     }
 
 
-    public  ArrayList<String[]> getAllData(){
+    public ArrayList<String[]> getAllData(){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
 
         ArrayList<String[]> arrayList = new ArrayList<>();
