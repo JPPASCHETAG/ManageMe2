@@ -239,7 +239,8 @@ public class DatabaseKonto extends SQLiteOpenHelper {
 
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
 
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE IS_SORTED=1 AND PROJEKT_ID="+projektID+" AND DATE>="+ strFirstOfMonth +" AND DATE<="+strLastOfMonth,null);
+        String strSQL = "SELECT * FROM " + TABLE_NAME + " WHERE IS_SORTED=1 AND PROJEKT_ID="+projektID+" AND DATE>='"+ strFirstOfMonth +"' AND DATE<='"+strLastOfMonth +"'";
+        Cursor cursor = sqLiteDatabase.rawQuery(strSQL,null);
 
         Double ergebnis = 0.00;
 
@@ -252,6 +253,9 @@ public class DatabaseKonto extends SQLiteOpenHelper {
         }
         cursor.close();
         strReturn = ergebnis.toString();
+        int indexPoint = strReturn.indexOf(".");
+        indexPoint = indexPoint+3;
+        strReturn = strReturn.substring(0,indexPoint);
 
         return strReturn;
     }
@@ -276,6 +280,9 @@ public class DatabaseKonto extends SQLiteOpenHelper {
         cursor.close();
 
         strReturn = ergebnis.toString();
+        int indexPoint = strReturn.indexOf(".");
+        indexPoint = indexPoint+3;
+        strReturn = strReturn.substring(0,indexPoint);
 
         return strReturn;
     }

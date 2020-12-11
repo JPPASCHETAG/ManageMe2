@@ -98,6 +98,15 @@ public class HTTP_REQUEST extends AsyncTask<String, Void, String>  {
                 Toast.makeText(context, "Fehler beim laden der User Daten!", Toast.LENGTH_SHORT).show();
             }else {
                 if(obj.getBoolean("REGISTER_SUCCESS")){
+
+                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                    editor.putString("VORNAME",obj.getString("VORNAME"));
+                    editor.putString("NACHNAME",obj.getString("NACHNAME"));
+                    editor.putString("MAIL",obj.getString("MAIL"));
+                    editor.apply();
+
                     LogInActivity logIn = new LogInActivity();
                     logIn.login(obj.getString("MAIL"),obj.getString("PASSWORT"),context);
                 }else{

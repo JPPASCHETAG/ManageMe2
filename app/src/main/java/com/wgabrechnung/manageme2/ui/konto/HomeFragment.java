@@ -2,7 +2,9 @@ package com.wgabrechnung.manageme2.ui.konto;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,15 +90,27 @@ public class HomeFragment extends Fragment {
                             DatabaseKonto db = new DatabaseKonto(root.getContext());
                             String lastRundruf = db.getLastRundruf();
 
-                            HashMap<String,String> URLparam = new HashMap<String,String>();
-                            URLparam.put("MODE","2");
-                            URLparam.put("LAST_RUNDRUF",lastRundruf);
-                            String strURL = CORE_HELPER.CREATE_URL(URLparam);
+                            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+                            String bankingNutzer = sharedPreferences.getString("ONLINE_BANKING_NUTZER", "");
+                            String bankingPWD = sharedPreferences.getString("ONLINE_BANKING_PWD", "");
 
-                            HTTP_REQUEST http_request = new HTTP_REQUEST(root.getContext(),2);
-                            http_request.execute(strURL);
+                            if(!bankingNutzer.equals("") && !bankingPWD.equals("")){
 
-                            kontoAdapter.notifyDataSetChanged();
+
+                                HashMap<String,String> URLparam = new HashMap<String,String>();
+                                URLparam.put("MODE","2");
+                                URLparam.put("LAST_RUNDRUF",lastRundruf);
+                                URLparam.put("ONLINE_BANKING_NUTZER",bankingNutzer);
+                                URLparam.put("ONLINE_BANKING_PWD",bankingPWD);
+                                String strURL = CORE_HELPER.CREATE_URL(URLparam);
+
+                                HTTP_REQUEST http_request = new HTTP_REQUEST(root.getContext(),2);
+                                http_request.execute(strURL);
+
+                                kontoAdapter.notifyDataSetChanged();
+                            }else{
+                                Toast.makeText(root.getContext(),"Keine HBCI Daten hinterlegt",Toast.LENGTH_SHORT).show();
+                            }
                         }
                     });
                 builder.setNegativeButton("abbrechen", new DialogInterface.OnClickListener() {
