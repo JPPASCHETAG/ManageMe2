@@ -38,7 +38,8 @@ public class DatabaseKonto extends SQLiteOpenHelper {
                 "    NAME varchar (50) not null default \"\",\n" +
                 "    DATE DATE default '0000-00-00',\n" +
                 "    CREDIT_DEBIT varchar (50) not null default \"\",\n" +
-                "    IS_SORTED tinyint (1) default 0    \n" +
+                "    IS_SORTED tinyint (1) default 0,    \n" +
+                "    PROJEKT_ID INTEGER default 0    \n" +
                 ");";
         db.execSQL(createTable);
     }
