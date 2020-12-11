@@ -1,6 +1,10 @@
 package com.wgabrechnung.manageme2;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.preference.PreferenceManager;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -122,5 +126,26 @@ public class CORE_HELPER {
 
         return date;
 
+    }
+
+    public static String getUSER_KENNUNG(Context context){
+
+        String strReturn = "";
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        strReturn = sharedPreferences.getString("USER_ID", "noID");
+
+        return strReturn;
+
+    }
+
+    public static boolean checkForTableExists(SQLiteDatabase db, String table){
+        String sql = "SELECT name FROM sqlite_master WHERE type='table' AND name='"+table+"'";
+        Cursor mCursor = db.rawQuery(sql, null);
+        if (mCursor.getCount() > 0) {
+            return true;
+        }
+        mCursor.close();
+        return false;
     }
 }

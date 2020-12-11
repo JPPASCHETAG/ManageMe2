@@ -102,6 +102,7 @@ public class HomeFragment extends Fragment {
                                 URLparam.put("LAST_RUNDRUF",lastRundruf);
                                 URLparam.put("ONLINE_BANKING_NUTZER",bankingNutzer);
                                 URLparam.put("ONLINE_BANKING_PWD",bankingPWD);
+                                URLparam.put("USER_KENNUNG",CORE_HELPER.getUSER_KENNUNG(getContext()));
                                 String strURL = CORE_HELPER.CREATE_URL(URLparam);
 
                                 HTTP_REQUEST http_request = new HTTP_REQUEST(root.getContext(),2);
