@@ -60,18 +60,23 @@ public class DialogSortUmsatz extends Dialog implements android.view.View.OnClic
         yes = (Button) findViewById(R.id.btn_yes);
         yes.setOnClickListener(this);
 
-        textViewID = findViewById(R.id.text_dialog_id);
+        if(projektList.size() > 0){
 
-        textView = findViewById(R.id.text_dialog);
-        imageView = findViewById(R.id.dialog_projekt_image);
+            textViewID = findViewById(R.id.text_dialog_id);
+
+            textView = findViewById(R.id.text_dialog);
+            imageView = findViewById(R.id.dialog_projekt_image);
 
 
-        String[] projekt = projektList.get(0);
+            String[] projekt = projektList.get(0);
 
-        textView.setText(projekt[0]);
-        textViewID.setText(projekt[3]);
-        imageView.setImageResource(getImageID(projekt[2]));
+            textView.setText(projekt[0]);
+            textViewID.setText(projekt[3]);
+            imageView.setImageResource(getImageID(projekt[2]));
 
+            yes = findViewById(R.id.btn_yes);
+            yes.setVisibility(View.VISIBLE);
+        }
     }
 
 
