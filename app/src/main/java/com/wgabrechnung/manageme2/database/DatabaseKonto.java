@@ -156,7 +156,7 @@ public class DatabaseKonto extends SQLiteOpenHelper {
         ArrayList<kontoumsatz> arrayList = new ArrayList<>();
 
 
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE IS_SORTED=0",null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE IS_SORTED=0 ORDER BY DATE DESC",null);
 
         cursor.moveToFirst();
         while(!cursor.isAfterLast()){
