@@ -106,9 +106,9 @@ public class HomeFragment extends Fragment {
                                 String strURL = CORE_HELPER.CREATE_URL(URLparam);
 
                                 HTTP_REQUEST http_request = new HTTP_REQUEST(root.getContext(),2);
+                                http_request.setCustomVarsKontorundruf(kontoAdapter,recyclerView);
                                 http_request.execute(strURL);
 
-                                kontoAdapter.notifyDataSetChanged();
                             }else{
                                 Toast.makeText(root.getContext(),"Keine HBCI Daten hinterlegt",Toast.LENGTH_SHORT).show();
                             }
