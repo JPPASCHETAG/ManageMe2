@@ -29,11 +29,11 @@ public class DatabaseProjekte extends SQLiteOpenHelper {
         db.execSQL(createTable);
 
         //StandardProjekte
-        String insertSQL = "INSERT INTO "+ TABLE_NAME + "(BEZ,BETRAG,IMG) VALUES (00.00,'Einkaufen','@drawable/fjord_4614096_1920.jpg')";
+        String insertSQL = "INSERT INTO "+ TABLE_NAME + "(BEZ,BETRAG,IMG) VALUES (00.00,'Einkaufen','undraw_shopping_app_flsj')";
         db.execSQL(insertSQL);
-        String insertSQL2 = "INSERT INTO "+ TABLE_NAME + "(BEZ,BETRAG,IMG) VALUES (00.00,'Auto','@drawable/fjord_4614096_1920.jpg')";
+        String insertSQL2 = "INSERT INTO "+ TABLE_NAME + "(BEZ,BETRAG,IMG) VALUES (00.00,'Auto','undraw_shopping_app_flsj')";
         db.execSQL(insertSQL2);
-        String insertSQL3 = "INSERT INTO "+ TABLE_NAME + "(BEZ,BETRAG,IMG) VALUES (00.00,'Sonstige Ausgaben','@drawable/fjord_4614096_1920.jpg')";
+        String insertSQL3 = "INSERT INTO "+ TABLE_NAME + "(BEZ,BETRAG,IMG) VALUES (00.00,'Sonstige Ausgaben','undraw_shopping_app_flsj')";
         db.execSQL(insertSQL3);
     }
 
@@ -56,7 +56,7 @@ public class DatabaseProjekte extends SQLiteOpenHelper {
     }
 
 
-    public  ArrayList<String[]> getAllData(){
+    public ArrayList<String[]> getAllData(){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
 
         ArrayList<String[]> arrayList = new ArrayList<>();
@@ -67,11 +67,12 @@ public class DatabaseProjekte extends SQLiteOpenHelper {
         cursor.moveToFirst();
         while(!cursor.isAfterLast()){
 
-            String[] dataset = new String[3];
+            String[] dataset = new String[4];
 
             dataset[0] = cursor.getString(cursor.getColumnIndex("BEZ"));
             dataset[1] = cursor.getString(cursor.getColumnIndex("BETRAG"));
             dataset[2] = cursor.getString(cursor.getColumnIndex("IMG"));
+            dataset[3] = cursor.getString(cursor.getColumnIndex("ID"));
 
             arrayList.add(dataset);
             cursor.moveToNext();

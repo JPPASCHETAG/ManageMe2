@@ -6,7 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,6 +36,9 @@ public class GalleryFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Projekte");
+
         galleryViewModel =
                 new ViewModelProvider(this).get(GalleryViewModel.class);
         View root = inflater.inflate(R.layout.fragment_gallery, container, false);
@@ -46,7 +52,8 @@ public class GalleryFragment extends Fragment {
         DatabaseProjekte db = new DatabaseProjekte(getContext());
         ArrayList<String[]> projekte = db.getAllData();
 
-        recyclerView.setAdapter(new ProjekteAdapter(projekte));
+        FragmentManager fragmentManager = getParentFragmentManager();
+        recyclerView.setAdapter(new ProjekteAdapter(projekte,fragmentManager));
 
         //Die kleinen fabs werden ausgeblendet
         FloatingActionButton addProjekt = root.findViewById(R.id.addProjekt);
@@ -99,7 +106,6 @@ public class GalleryFragment extends Fragment {
                 ft.commit();
             }
         });
-
 
 
         return root;

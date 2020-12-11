@@ -6,12 +6,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,8 +21,6 @@ import com.wgabrechnung.manageme2.R;
 import com.wgabrechnung.manageme2.ViewAnimation;
 import com.wgabrechnung.manageme2.adapter.KontoAdapter;
 import com.wgabrechnung.manageme2.database.DatabaseKonto;
-import com.wgabrechnung.manageme2.ui.newProjekt.NewProjektFragment;
-import com.wgabrechnung.manageme2.ui.slideshow.SlideshowFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,7 +42,7 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
 
         DatabaseKonto dbKont = new DatabaseKonto(root.getContext());
-        ArrayList<String[]> umsaetze = dbKont.getAllText();
+        ArrayList<kontoumsatz> umsaetze = dbKont.getKontoListAdaptder();
 
         KontoAdapter kontoAdapter = new KontoAdapter(umsaetze);
         recyclerView.setAdapter(kontoAdapter);
@@ -89,13 +85,18 @@ public class HomeFragment extends Fragment {
 
                             Toast.makeText(root.getContext(),"Kontenrundruf gestartet",Toast.LENGTH_SHORT).show();
 
+                            DatabaseKonto db = new DatabaseKonto(root.getContext());
+                            String lastRundruf = db.getLastRundruf();
+
                             HashMap<String,String> URLparam = new HashMap<String,String>();
                             URLparam.put("MODE","2");
+                            URLparam.put("LAST_RUNDRUF",lastRundruf);
                             String strURL = CORE_HELPER.CREATE_URL(URLparam);
 
                             HTTP_REQUEST http_request = new HTTP_REQUEST(root.getContext(),2);
                             http_request.execute(strURL);
 
+                            kontoAdapter.notifyDataSetChanged();
                         }
                     });
                 builder.setNegativeButton("abbrechen", new DialogInterface.OnClickListener() {
@@ -114,12 +115,12 @@ public class HomeFragment extends Fragment {
         autoSort.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //
+
+                DialogSortUmsatz dialog = new DialogSortUmsatz(root.getContext(),kontoAdapter,recyclerView);
+                dialog.show();
+
             }
         });
-
-
-
 
         return root;
     }
