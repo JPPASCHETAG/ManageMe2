@@ -33,8 +33,8 @@ public class CORE_HELPER {
      */
     public static String CREATE_URL(HashMap URLparams){
 
-        //String strUrl = "http://neat-me.de/connect.php?";
-        StringBuilder strUrl = new StringBuilder("http://192.168.2.175/ManageMeWeb/http_request.php?");
+        //String strUrl = "connect.php?";
+        StringBuilder strUrl = new StringBuilder("http://neat-me.de/ManageMeWeb/http_request.php?");
 
         for (Object o : URLparams.entrySet()) {
             Map.Entry pair = (Map.Entry) o;
