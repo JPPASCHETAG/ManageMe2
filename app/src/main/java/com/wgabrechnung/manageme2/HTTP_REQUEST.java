@@ -10,8 +10,12 @@ import android.provider.ContactsContract;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.wgabrechnung.manageme2.adapter.KontoAdapter;
 import com.wgabrechnung.manageme2.database.DatabaseKonto;
 import com.wgabrechnung.manageme2.database.DatabaseProjekte;
+import com.wgabrechnung.manageme2.ui.konto.kontoumsatz;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,10 +24,16 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 
 public class HTTP_REQUEST extends AsyncTask<String, Void, String>  {
+
+
+    private static KontoAdapter kontoAdapter;
+    private static RecyclerView recyclerView;
+
 
     @SuppressLint("StaticFieldLeak")
     private static Context context;
@@ -32,6 +42,11 @@ public class HTTP_REQUEST extends AsyncTask<String, Void, String>  {
     public HTTP_REQUEST(Context actCon, Integer mode){
         context = actCon;
         MODE = mode;
+    }
+
+    public void setCustomVarsKontorundruf(KontoAdapter varKontoAdapter,RecyclerView varRecyclerView){
+        kontoAdapter = varKontoAdapter;
+        recyclerView = varRecyclerView;
     }
 
 
@@ -187,6 +202,13 @@ public class HTTP_REQUEST extends AsyncTask<String, Void, String>  {
         }
 
         Toast.makeText(context,"Kontenrundruf beendet",Toast.LENGTH_SHORT).show();
+
+        DatabaseKonto dbKont = new DatabaseKonto(context);
+        ArrayList<kontoumsatz> umsaetze = dbKont.getKontoListAdaptder();
+
+        KontoAdapter kontoAdapter = new KontoAdapter(umsaetze);
+        recyclerView.setAdapter(kontoAdapter);
+
 
     }
 
