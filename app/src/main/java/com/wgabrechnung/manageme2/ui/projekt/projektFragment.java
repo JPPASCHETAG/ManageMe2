@@ -17,11 +17,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wgabrechnung.manageme2.R;
 import com.wgabrechnung.manageme2.adapter.KontoAdapter;
 import com.wgabrechnung.manageme2.adapter.ProjekteAdapter;
 import com.wgabrechnung.manageme2.database.DatabaseKonto;
 import com.wgabrechnung.manageme2.database.DatabaseProjekte;
+import com.wgabrechnung.manageme2.ui.konto.DialogSortUmsatz;
 import com.wgabrechnung.manageme2.ui.konto.kontoumsatz;
 import com.wgabrechnung.manageme2.ui.projekte.GalleryViewModel;
 
@@ -35,6 +37,7 @@ public class projektFragment extends Fragment {
     private ProjektViewModel projektViewModel;
     private RecyclerView recyclerView;
     private TextView TextViewBetragMonth, TextViewBetragGesamt;
+    private FloatingActionButton FAB;
 
     private static String Projektname;
     private static int projektID;
@@ -60,7 +63,8 @@ public class projektFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
         DatabaseKonto db = new DatabaseKonto(getContext());
         ArrayList<kontoumsatz> projekt = db.getDataOfProjekt(projektID);
-        recyclerView.setAdapter(new KontoAdapter(projekt));
+        KontoAdapter kontoAdapter = new KontoAdapter(projekt);
+        recyclerView.setAdapter(kontoAdapter);
 
         //aktuellen Monat ausgeben
         TextViewBetragMonth = root.findViewById(R.id.textViewMonth);
@@ -71,6 +75,17 @@ public class projektFragment extends Fragment {
         TextViewBetragGesamt = root.findViewById(R.id.textViewGesamt);
         String GesamtBetrag = db.getBetragGesamt(projektID);
         TextViewBetragGesamt.setText(GesamtBetrag + "€");
+
+        FAB = root.findViewById(R.id.floatingActionButtonAdd);
+
+        FAB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogAddUmsatz dialog = new DialogAddUmsatz(root.getContext(),projektID,kontoAdapter,recyclerView);
+                dialog.show();
+            }
+        });
+
 
         return root;
     }

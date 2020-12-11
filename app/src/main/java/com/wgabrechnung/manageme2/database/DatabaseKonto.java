@@ -84,6 +84,26 @@ public class DatabaseKonto extends SQLiteOpenHelper {
 
     }
 
+
+    public boolean addUmsatzToProjekt(Double betrag,String vzweck, String art, String name, String date, String credit_debit,int projektID){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("BETRAG",betrag);
+        contentValues.put("VZWECK",vzweck);
+        contentValues.put("ART",art);
+        contentValues.put("NAME",name);
+        contentValues.put("DATE",date);
+        contentValues.put("CREDIT_DEBIT",credit_debit);
+        contentValues.put("IS_SORTED",1);
+        contentValues.put("PROJEKT_ID",projektID);
+
+        sqLiteDatabase.insert(TABLE_NAME,null,contentValues);
+        return true;
+
+    }
+
+
+
     public void deleteContents(){
 
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();

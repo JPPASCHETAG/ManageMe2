@@ -132,7 +132,6 @@ public class DialogSortUmsatz extends Dialog implements android.view.View.OnClic
      */
     @Override
     public void onClick(View v) {
-        System.out.println(v.getId());
 
         if (v.getId() == R.id.btn_yes) {
             int intCountSelected = 0;

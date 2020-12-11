@@ -104,8 +104,6 @@ public class CORE_HELPER {
 
     public static String getLastOfMonth() {
 
-
-
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.DATE, cal.getActualMaximum(Calendar.DATE));
 
@@ -113,7 +111,16 @@ public class CORE_HELPER {
         SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
         String date1 = format1.format(lastDayOfMonth);
 
-
         return date1;
+    }
+
+    public static String getCurrDate() {
+
+        Date lastDayOfMonth = Calendar.getInstance().getTime();
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+        String date = format1.format(lastDayOfMonth);
+
+        return date;
+
     }
 }
