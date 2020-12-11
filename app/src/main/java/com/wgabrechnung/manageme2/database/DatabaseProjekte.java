@@ -28,13 +28,6 @@ public class DatabaseProjekte extends SQLiteOpenHelper {
                 ");";
         db.execSQL(createTable);
 
-        //StandardProjekte
-        String insertSQL = "INSERT INTO "+ TABLE_NAME + "(BEZ,BETRAG,IMG) VALUES (00.00,'Einkaufen','undraw_shopping_app_flsj')";
-        db.execSQL(insertSQL);
-        String insertSQL2 = "INSERT INTO "+ TABLE_NAME + "(BEZ,BETRAG,IMG) VALUES (00.00,'Auto','undraw_shopping_app_flsj')";
-        db.execSQL(insertSQL2);
-        String insertSQL3 = "INSERT INTO "+ TABLE_NAME + "(BEZ,BETRAG,IMG) VALUES (00.00,'Sonstige Ausgaben','undraw_shopping_app_flsj')";
-        db.execSQL(insertSQL3);
     }
 
     @Override
