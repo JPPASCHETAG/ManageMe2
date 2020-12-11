@@ -134,6 +134,11 @@ public class HTTP_REQUEST extends AsyncTask<String, Void, String>  {
                     SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
 
+                    JSONObject dataObject = obj.getJSONObject("0");
+
+                    editor.putString("USER_ID",dataObject.getString("USER_KENNUNG"));
+                    editor.apply();
+
                     //wenn der Login erfolgreich war die startseite zeigen
                     Intent activityStartseite = new Intent(context, StartseiteActivity.class);
                     activityStartseite.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
