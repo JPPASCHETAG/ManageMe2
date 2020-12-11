@@ -11,6 +11,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.wgabrechnung.manageme2.database.DatabaseKonto;
+import com.wgabrechnung.manageme2.database.DatabaseProjekte;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -138,6 +139,11 @@ public class HTTP_REQUEST extends AsyncTask<String, Void, String>  {
 
                     editor.putString("USER_ID",dataObject.getString("USER_KENNUNG"));
                     editor.apply();
+
+                    //Falls sich direkt eingeoggt wird, prüfen ob Dbs vorhanden
+                    DatabaseKonto dbK = new DatabaseKonto(context);
+                    DatabaseProjekte dbk = new DatabaseProjekte(context);
+
 
                     //wenn der Login erfolgreich war die startseite zeigen
                     Intent activityStartseite = new Intent(context, StartseiteActivity.class);
