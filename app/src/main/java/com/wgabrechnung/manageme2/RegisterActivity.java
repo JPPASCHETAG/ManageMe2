@@ -54,7 +54,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         if(!strInputPasswort.equals(strInputPasswort2)){
             Toast.makeText(getApplicationContext(),"Passwort stimmt nicht überein!", Toast.LENGTH_LONG).show();
-            return;
         }else{
 
             String UserID = UUID.randomUUID().toString();
@@ -73,8 +72,6 @@ public class RegisterActivity extends AppCompatActivity {
             URLparam.put("PASSWORT",strInputPasswort);
             URLparam.put("USER_ID",UserID);
             String strURL = CORE_HELPER.CREATE_URL(URLparam);
-
-            System.out.println(strURL);
 
             HTTP_REQUEST http_request = new HTTP_REQUEST(getApplicationContext(),0);
             http_request.execute(strURL);

@@ -2,6 +2,10 @@ package com.wgabrechnung.manageme2;
 
 import android.content.Context;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -47,4 +51,76 @@ public class CORE_HELPER {
 
     }
 
+    public static String FormatBetrag(String oldBetrag, String credit_debit){
+
+        String[] nachKomma = oldBetrag.split("\\.");
+        String cent = nachKomma[1];
+        if(cent.length() == 1){
+            cent += "0 €";
+        }else{
+            cent += " €";
+        }
+
+        nachKomma[1] = cent;
+
+        String strReturn = String.join(",", nachKomma);
+
+        if(credit_debit.equals("debit")){
+            strReturn = "-" + strReturn;
+        }
+
+        return strReturn;
+    }
+
+    public static String FormatDatum(String datum){
+
+        String strReturn = "";
+
+        String[] date = datum.split("-");
+
+        for (int i = date.length-1; i>=0;i--){
+            strReturn += date[i] +".";
+        }
+
+        strReturn = strReturn.substring(0,strReturn.length()-1);
+
+        return strReturn;
+
+    }
+
+    public static String getFirstOfMonth() {
+
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.DAY_OF_MONTH, 1);
+
+        Date FirstDayOfMonth = cal.getTime();
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+        String date = format1.format(FirstDayOfMonth);
+
+
+        return date;
+
+    }
+
+    public static String getLastOfMonth() {
+
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.DATE, cal.getActualMaximum(Calendar.DATE));
+
+        Date lastDayOfMonth = cal.getTime();
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+        String date1 = format1.format(lastDayOfMonth);
+
+        return date1;
+    }
+
+    public static String getCurrDate() {
+
+        Date lastDayOfMonth = Calendar.getInstance().getTime();
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+        String date = format1.format(lastDayOfMonth);
+
+        return date;
+
+    }
 }
