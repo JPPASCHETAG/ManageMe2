@@ -6,21 +6,31 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.wgabrechnung.manageme2.CORE_HELPER;
+
 import java.util.ArrayList;
 
 public class DatabaseProjekte extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "PROJEKTE";
-    public static final String TABLE_NAME = "PROJEKTE";
+    public static String TABLE_NAME;
+    private final Context context;
 
     public DatabaseProjekte(Context context){
         super(context,DATABASE_NAME,null,1);
+        this.context = context;
+        TABLE_NAME = "PROJEKTE_"+ CORE_HELPER.getUSER_KENNUNG(context);
+
+        if(!CORE_HELPER.checkForTableExists(this.getWritableDatabase(),TABLE_NAME)){
+            this.onCreate(this.getWritableDatabase());
+        }
+
     }
 
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "create table " + TABLE_NAME + "(" +
+        String createTable = "create table PROJEKTE_" + CORE_HELPER.getUSER_KENNUNG(context) + "(" +
                 "    ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL ,\n" +
                 "    BEZ varchar (150) not null default \"\",\n" +
                 "    BETRAG float not null default 0,\n" +
