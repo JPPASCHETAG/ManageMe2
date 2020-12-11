@@ -9,19 +9,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.os.Handler;
-import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,7 +23,6 @@ import android.widget.Toast;
 import com.wgabrechnung.manageme2.R;
 import com.wgabrechnung.manageme2.database.DatabaseProjekte;
 import com.wgabrechnung.manageme2.ui.projekte.GalleryFragment;
-import com.wgabrechnung.manageme2.ui.slideshow.SlideshowFragment;
 
 public class NewProjektFragment extends Fragment {
 

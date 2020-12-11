@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -21,7 +20,7 @@ import com.wgabrechnung.manageme2.ViewAnimation;
 import com.wgabrechnung.manageme2.adapter.ProjekteAdapter;
 import com.wgabrechnung.manageme2.database.DatabaseProjekte;
 import com.wgabrechnung.manageme2.ui.newProjekt.NewProjektFragment;
-import com.wgabrechnung.manageme2.ui.slideshow.SlideshowFragment;
+import com.wgabrechnung.manageme2.ui.ToDo.SlideshowFragment;
 
 import java.util.ArrayList;
 
