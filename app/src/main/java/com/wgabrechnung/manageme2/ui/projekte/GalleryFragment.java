@@ -20,7 +20,7 @@ import com.wgabrechnung.manageme2.ViewAnimation;
 import com.wgabrechnung.manageme2.adapter.ProjekteAdapter;
 import com.wgabrechnung.manageme2.database.DatabaseProjekte;
 import com.wgabrechnung.manageme2.ui.newProjekt.NewProjektFragment;
-import com.wgabrechnung.manageme2.ui.ToDo.SlideshowFragment;
+import com.wgabrechnung.manageme2.ui.ToDos.SlideshowFragment;
 
 import java.util.ArrayList;
 

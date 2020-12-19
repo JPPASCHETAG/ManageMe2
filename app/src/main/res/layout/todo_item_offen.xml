@@ -46,10 +46,11 @@
                 app:srcCompat="@drawable/done_black_24dp" />
 
             <ImageView
+                android:id="@+id/delToDo"
+                android:layout_toEndOf="@+id/checkToDo"
                 android:layout_width="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@+id/checkToDo"
                 app:srcCompat="@drawable/clear_black_24dp" />
 
         </RelativeLayout>

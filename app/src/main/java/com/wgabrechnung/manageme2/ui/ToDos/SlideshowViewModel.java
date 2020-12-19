@@ -1,4 +1,4 @@
-package com.wgabrechnung.manageme2.ui.ToDo;
+package com.wgabrechnung.manageme2.ui.ToDos;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
