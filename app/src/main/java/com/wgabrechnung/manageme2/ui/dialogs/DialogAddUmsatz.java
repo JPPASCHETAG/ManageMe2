@@ -1,4 +1,4 @@
-package com.wgabrechnung.manageme2.ui.projekt;
+package com.wgabrechnung.manageme2.ui.dialogs;
 
 import android.app.Dialog;
 import android.content.Context;

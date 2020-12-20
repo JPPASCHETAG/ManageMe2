@@ -1,4 +1,4 @@
-package com.wgabrechnung.manageme2.ui.konto;
+package com.wgabrechnung.manageme2.ui.dialogs;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -19,6 +19,7 @@ import com.wgabrechnung.manageme2.R;
 import com.wgabrechnung.manageme2.adapter.KontoAdapter;
 import com.wgabrechnung.manageme2.database.DatabaseKonto;
 import com.wgabrechnung.manageme2.database.DatabaseProjekte;
+import com.wgabrechnung.manageme2.ui.konto.kontoumsatz;
 
 import java.util.ArrayList;
 import java.util.List;

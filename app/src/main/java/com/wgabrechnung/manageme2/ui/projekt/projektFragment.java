@@ -1,7 +1,6 @@
 package com.wgabrechnung.manageme2.ui.projekt;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -20,15 +19,9 @@ import android.widget.TextView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wgabrechnung.manageme2.R;
 import com.wgabrechnung.manageme2.adapter.KontoAdapter;
-import com.wgabrechnung.manageme2.adapter.ProjekteAdapter;
 import com.wgabrechnung.manageme2.database.DatabaseKonto;
-import com.wgabrechnung.manageme2.database.DatabaseProjekte;
-import com.wgabrechnung.manageme2.ui.konto.DialogSortUmsatz;
+import com.wgabrechnung.manageme2.ui.dialogs.DialogAddUmsatz;
 import com.wgabrechnung.manageme2.ui.konto.kontoumsatz;
-import com.wgabrechnung.manageme2.ui.projekte.GalleryViewModel;
-
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 

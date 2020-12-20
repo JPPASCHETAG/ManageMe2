@@ -54,6 +54,7 @@ public class ProjekteAdapter extends RecyclerView.Adapter<ProjeketeViewHolder> {
         String betrag = arrayList.get(position)[1];
         String img = arrayList.get(position)[2];
 
+
         holder.getViewBetrag().setText(betrag);
         holder.getViewName().setText(name);
         holder.getViewImg().setImageResource(getResId(img,R.drawable.class));
