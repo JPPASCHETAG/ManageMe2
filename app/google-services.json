@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "394384885218",
+    "project_id": "manageme-16615",
+    "storage_bucket": "manageme-16615.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:394384885218:android:629264a5c53bf9688fa5bb",
+        "android_client_info": {
+          "package_name": "com.wgabrechnung.manageme2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "394384885218-b1jiptfdtojnef81kkl42p3h1mne7qs9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBlS6KaAyLI7YaWuoq5x4145PUMFutCME"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "394384885218-b1jiptfdtojnef81kkl42p3h1mne7qs9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

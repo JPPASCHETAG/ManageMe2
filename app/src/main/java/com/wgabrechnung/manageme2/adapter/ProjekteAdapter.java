@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,7 +18,6 @@ import com.wgabrechnung.manageme2.database.DatabaseKonto;
 import com.wgabrechnung.manageme2.ui.dialogs.DialogEditProjekt;
 import com.wgabrechnung.manageme2.ui.dialogs.DialogSortUmsatz;
 import com.wgabrechnung.manageme2.ui.projekt.projektFragment;
-import com.wgabrechnung.manageme2.ui.slideshow.SlideshowFragment;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

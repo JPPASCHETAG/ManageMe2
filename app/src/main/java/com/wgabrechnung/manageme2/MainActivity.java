@@ -21,10 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("STAY_LOGGED_IN", false);
 
-        USER_ID = sharedPreferences.getString("UNIQUE_ID", "noID");
+        USER_ID = sharedPreferences.getString("USER_ID", "noID");
         STAY_LOGGED_IN = sharedPreferences.getBoolean("STAY_LOGGED_IN", false);
 
         //wenn keine id gestezt ist einen Dialog um alle SystemVariablen zu setzen

@@ -14,11 +14,11 @@
             android:title="Projekte" />
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:icon="@drawable/menu_24px"
+            android:title="ToDo-Listen" />
         <item
             android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/settings_black_18dp"
             android:title="Einstellungen" />
     </group>
 </menu>
