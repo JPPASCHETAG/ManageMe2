@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.wgabrechnung.manageme2.R;
-import com.wgabrechnung.manageme2.ui.TodoListViewModel;
 
 public class todoListFragment extends Fragment {
 

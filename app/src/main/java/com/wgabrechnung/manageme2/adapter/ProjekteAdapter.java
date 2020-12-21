@@ -36,7 +36,7 @@ public class ProjekteAdapter extends RecyclerView.Adapter<ProjeketeViewHolder> {
 
 
     public ProjekteAdapter(ArrayList<String[]> liste, FragmentManager fragmentManager, Context con, RecyclerView recView) {
-        this.arrayList = liste;
+        arrayList = liste;
         this.fragmentManager = fragmentManager;
         this.context = con;
         this.recyclerView = recView;

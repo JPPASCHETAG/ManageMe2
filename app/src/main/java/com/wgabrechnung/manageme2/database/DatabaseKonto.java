@@ -271,7 +271,7 @@ public class DatabaseKonto extends SQLiteOpenHelper {
         cursor.close();
         strReturn = ergebnis.toString();
         int indexPoint = strReturn.indexOf(".");
-        if(strReturn.substring(indexPoint,strReturn.length()).length() > 3){
+        if(strReturn.substring(indexPoint).length() > 3){
             indexPoint = indexPoint+3;
             strReturn = strReturn.substring(0,indexPoint);
         }
@@ -300,7 +300,7 @@ public class DatabaseKonto extends SQLiteOpenHelper {
 
         strReturn = ergebnis.toString();
         int indexPoint = strReturn.indexOf(".");
-        if(strReturn.substring(indexPoint,strReturn.length()).length() > 3){
+        if(strReturn.substring(indexPoint).length() > 3){
             indexPoint = indexPoint+3;
             strReturn = strReturn.substring(0,indexPoint);
         }

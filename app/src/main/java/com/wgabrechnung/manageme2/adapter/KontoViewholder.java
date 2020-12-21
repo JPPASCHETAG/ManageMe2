@@ -14,12 +14,12 @@ import com.wgabrechnung.manageme2.R;
 
 public class KontoViewholder extends RecyclerView.ViewHolder {
 
-    private TextView viewBetrag;
-    private TextView viewName;
-    private TextView viewDatum;
-    private TextView viewArt;
-    private LinearLayout layoutBez;
-    private View view;
+    private final TextView viewBetrag;
+    private final TextView viewName;
+    private final TextView viewDatum;
+    private final TextView viewArt;
+    private final LinearLayout layoutBez;
+    private final View view;
 
 
     public KontoViewholder(@NonNull View itemView) {

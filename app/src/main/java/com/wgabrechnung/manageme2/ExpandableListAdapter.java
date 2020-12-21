@@ -14,9 +14,9 @@ import java.util.List;
 
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
-    private Context context;
-    private List<MenuModel> listDataHeader;
-    private HashMap<MenuModel, List<MenuModel>> listDataChild;
+    private final Context context;
+    private final List<MenuModel> listDataHeader;
+    private final HashMap<MenuModel, List<MenuModel>> listDataChild;
 
     public ExpandableListAdapter(Context context, List<MenuModel> listDataHeader,
                                  HashMap<MenuModel, List<MenuModel>> listChildData) {
