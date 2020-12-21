@@ -23,6 +23,7 @@ import com.wgabrechnung.manageme2.R;
 import com.wgabrechnung.manageme2.ViewAnimation;
 import com.wgabrechnung.manageme2.adapter.KontoAdapter;
 import com.wgabrechnung.manageme2.database.DatabaseKonto;
+import com.wgabrechnung.manageme2.ui.dialogs.DialogSortUmsatz;
 
 import java.util.ArrayList;
 import java.util.HashMap;

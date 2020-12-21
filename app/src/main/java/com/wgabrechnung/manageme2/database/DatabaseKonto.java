@@ -27,6 +27,17 @@ public class DatabaseKonto extends SQLiteOpenHelper {
 
     }
 
+    public void deleteProjekt(int ProjektID) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("PROJEKT_ID",0);
+        values.put("IS_SORTED",0);
+
+        sqLiteDatabase.update(TABLE_NAME, values,"PROJEKT_ID=?",new String[]{String.valueOf(ProjektID)});
+
+    }
+
 
     /**
      * Called when the database is created for the first time. This is where the
@@ -295,6 +306,20 @@ public class DatabaseKonto extends SQLiteOpenHelper {
         }
 
         return strReturn;
+    }
+
+
+    public String getProjektBetrag(String projektID){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+        String strSQL = "SELECT SUM(BETRAG) AS BETRAG FROM " + TABLE_NAME + " WHERE IS_SORTED=1 AND PROJEKT_ID="+projektID;
+        Cursor cursor = sqLiteDatabase.rawQuery(strSQL,null);
+        cursor.moveToFirst();
+        Double ergebnis = cursor.getDouble(cursor.getColumnIndex("BETRAG"));
+        cursor.close();
+
+        return ergebnis.toString();
+
     }
 
 
