@@ -3,6 +3,7 @@ package com.wgabrechnung.manageme2.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wgabrechnung.manageme2.R;
+import com.wgabrechnung.manageme2.database.DatabaseKonto;
 import com.wgabrechnung.manageme2.ui.dialogs.DialogEditProjekt;
 import com.wgabrechnung.manageme2.ui.dialogs.DialogSortUmsatz;
 import com.wgabrechnung.manageme2.ui.projekt.projektFragment;
@@ -61,8 +63,12 @@ public class ProjekteAdapter extends RecyclerView.Adapter<ProjeketeViewHolder> {
 
         String[] projekt = arrayList.get(position);
 
+        DatabaseKonto dbKonto = new DatabaseKonto(context);
+        String betrag = dbKonto.getProjektBetrag(projekt[3]);
+        betrag +="€";
+
         String name = arrayList.get(position)[0];
-        String betrag = arrayList.get(position)[1];
+        //String betrag = arrayList.get(position)[1];
         String img = arrayList.get(position)[2];
 
 

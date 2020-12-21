@@ -309,4 +309,18 @@ public class DatabaseKonto extends SQLiteOpenHelper {
     }
 
 
+    public String getProjektBetrag(String projektID){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+        String strSQL = "SELECT SUM(BETRAG) AS BETRAG FROM " + TABLE_NAME + " WHERE IS_SORTED=1 AND PROJEKT_ID="+projektID;
+        Cursor cursor = sqLiteDatabase.rawQuery(strSQL,null);
+        cursor.moveToFirst();
+        Double ergebnis = cursor.getDouble(cursor.getColumnIndex("BETRAG"));
+        cursor.close();
+
+        return ergebnis.toString();
+
+    }
+
+
 }
