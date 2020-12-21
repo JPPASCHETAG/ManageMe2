@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.wgabrechnung.manageme2.CORE_HELPER;
 import com.wgabrechnung.manageme2.R;
 import com.wgabrechnung.manageme2.database.DatabaseKonto;
 import com.wgabrechnung.manageme2.database.DatabaseProjekte;
@@ -97,7 +98,7 @@ public class KontoAdapter extends RecyclerView.Adapter<KontoViewholder> {
                 ContentValues cv = new ContentValues();
                 cv.put("IS_SORTED",1);
                 cv.put("PROJEKT_ID",projektID);
-                kontoDB.update("KONTO",cv,"ID=?",new String[]{String.valueOf(umsatz.getID())});
+                kontoDB.update("KONTO_"+ CORE_HELPER.getUSER_KENNUNG(context),cv,"ID=?",new String[]{String.valueOf(umsatz.getID())});
             }
         }
     }
