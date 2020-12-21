@@ -53,7 +53,7 @@ public class GalleryFragment extends Fragment {
         ArrayList<String[]> projekte = db.getAllData();
 
         FragmentManager fragmentManager = getParentFragmentManager();
-        recyclerView.setAdapter(new ProjekteAdapter(projekte,fragmentManager));
+        recyclerView.setAdapter(new ProjekteAdapter(projekte,fragmentManager,getContext(),recyclerView));
 
         //Die kleinen fabs werden ausgeblendet
         FloatingActionButton addProjekt = root.findViewById(R.id.addProjekt);

@@ -1,6 +1,7 @@
 package com.wgabrechnung.manageme2.adapter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,8 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wgabrechnung.manageme2.R;
+import com.wgabrechnung.manageme2.ui.dialogs.DialogEditProjekt;
+import com.wgabrechnung.manageme2.ui.dialogs.DialogSortUmsatz;
 import com.wgabrechnung.manageme2.ui.projekt.projektFragment;
 import com.wgabrechnung.manageme2.ui.slideshow.SlideshowFragment;
 
@@ -22,13 +25,21 @@ import java.util.ArrayList;
 public class ProjekteAdapter extends RecyclerView.Adapter<ProjeketeViewHolder> {
 
 
-    private final ArrayList<String[]> arrayList;
+    private static ArrayList<String[]> arrayList;
     private final FragmentManager fragmentManager;
+    private final Context context;
+    private final RecyclerView recyclerView;
+
+    public static void setArrayList(ArrayList<String[]> list){
+        arrayList = list;
+    }
 
 
-    public ProjekteAdapter(ArrayList<String[]> liste, FragmentManager fragmentManager) {
+    public ProjekteAdapter(ArrayList<String[]> liste, FragmentManager fragmentManager, Context con, RecyclerView recView) {
         this.arrayList = liste;
         this.fragmentManager = fragmentManager;
+        this.context = con;
+        this.recyclerView = recView;
     }
 
     @Override
@@ -59,12 +70,12 @@ public class ProjekteAdapter extends RecyclerView.Adapter<ProjeketeViewHolder> {
         holder.getViewName().setText(name);
         holder.getViewImg().setImageResource(getResId(img,R.drawable.class));
 
+        int ProjektId = Integer.parseInt(projekt[3]);
 
         holder.getCardView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                int ProjektId = Integer.parseInt(projekt[3]);
 
                 FragmentTransaction ft = fragmentManager.beginTransaction();
                 ft.setCustomAnimations(R.anim.right_enter, R.anim.right_exit);
@@ -73,6 +84,17 @@ public class ProjekteAdapter extends RecyclerView.Adapter<ProjeketeViewHolder> {
                 // Start the animated transition.
                 ft.commit();
 
+            }
+        });
+
+        holder.getCardView().setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                DialogEditProjekt dialog = new DialogEditProjekt(context,ProjektId,recyclerView,fragmentManager);
+                dialog.show();
+
+                return false;
             }
         });
 

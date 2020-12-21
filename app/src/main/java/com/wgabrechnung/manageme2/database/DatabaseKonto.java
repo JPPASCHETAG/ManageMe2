@@ -27,6 +27,17 @@ public class DatabaseKonto extends SQLiteOpenHelper {
 
     }
 
+    public void deleteProjekt(int ProjektID) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("PROJEKT_ID",0);
+        values.put("IS_SORTED",0);
+
+        sqLiteDatabase.update(TABLE_NAME, values,"PROJEKT_ID=?",new String[]{String.valueOf(ProjektID)});
+
+    }
+
 
     /**
      * Called when the database is created for the first time. This is where the

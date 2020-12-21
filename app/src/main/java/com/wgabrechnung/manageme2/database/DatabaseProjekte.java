@@ -86,4 +86,53 @@ public class DatabaseProjekte extends SQLiteOpenHelper {
 
     }
 
+    public ArrayList<String[]> getProjektData(int projektID){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+        ArrayList<String[]> arrayList = new ArrayList<>();
+
+
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME + " where ID="+projektID,null);
+
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()){
+
+            String[] dataset = new String[4];
+
+            dataset[3] = cursor.getString(cursor.getColumnIndex("ID"));
+            dataset[0] = cursor.getString(cursor.getColumnIndex("BEZ"));
+            dataset[1] = cursor.getString(cursor.getColumnIndex("BETRAG"));
+            dataset[2] = cursor.getString(cursor.getColumnIndex("IMG"));
+
+            arrayList.add(dataset);
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        return arrayList;
+
+    }
+
+
+    public void deleteProjekt(int ProjektID){
+
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        sqLiteDatabase.delete(TABLE_NAME,"ID=?",new String[]{String.valueOf(ProjektID)});
+
+    }
+
+    public void updateProjekt(String bez, String img,int ProjektID){
+
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("BEZ",bez);
+        contentValues.put("IMG",img);
+
+        sqLiteDatabase.update(TABLE_NAME,contentValues,"ID=?",new String[]{String.valueOf(ProjektID)});
+
+    }
+
+
+
 }
